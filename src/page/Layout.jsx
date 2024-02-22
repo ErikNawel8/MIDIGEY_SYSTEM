@@ -1,17 +1,16 @@
 import { Outlet } from "react-router-dom";
-import {Column, Row } from "../components";
+import { Column, Row } from "../components";
 import MenuBar from "../layout/MenuBar";
-import Navegation from "../layout/Navegation";
-
+import Navigation from "../layout/Navigation";
 
 export default function Layout() {
   return (
     <>
       <Row>
-        <Navegation />
+        <Navigation />
         <Column>
           <MenuBar />
-           <Outlet />
+          <Outlet />
         </Column>
       </Row>
     </>

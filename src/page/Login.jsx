@@ -1,34 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
-//libreria para implementar formularios
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../redux/Api/AuthApi";
 import { useDispatch } from "react-redux";
 import { JwtUtils } from "../utils";
-import { message } from "antd";
-//componente creacdo con styled component
-import {
-  DivContainerPage,
-  Button,
-  Label,
-  Input,
-  FormContainer,
-  DivPassword,
-  ButtonPassword as StyleButtonPassword,
-  Spinner,
-} from "../components";
+import { Button, Form, Input, Spin, message } from "antd";
 
 import { setUser } from "../redux/Slice/authSlice";
 
-/// libreria de iconos
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
-//// importacion de logo de la empresa
-import logo from "../assets/logo.png";
-
-//componente login
 export default function Login() {
-  /// useState para el toogle de ver contrase;o
-  const [activo, setActivo] = useState(false);
+  const [form] = Form.useForm();
   const [loadingState, setLoadingloadingState] = useState(false);
 
   const dispatch = useDispatch();
@@ -66,7 +46,7 @@ export default function Login() {
         });
       }
     }
-  }, [isLoginSuccess, loginData?.result, navigate]);
+  }, [isLoginSuccess, loginData?.result, navigate, dispatchUser]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -78,76 +58,56 @@ export default function Login() {
   }, [navigate]);
 
   /// destruturacion de componente useform ----
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm();
 
   /// -----------------------------------
   const onSubmit = async (data) => {
+    console.log("qlq");
     await loginUser(data);
   };
 
   return (
     <>
-      <DivContainerPage >
-        <img className="animate__animated animate__pulse animate__delay-2s animate__repeat-2" style={{ marginBottom: "50px" }} src={logo} />
-
-        <FormContainer onSubmit={handleSubmit(onSubmit)}>
-          <Label> Usuario </Label>
-          <Input
-            placeholder="Usuario@gestnett.com"
-            {...register("NombreUsuario", {
-              required: true,
-              minLength: 1,
-              maxLength: 50,
-            })}
-          />
-          {errors.NombreUsuario && (
-            <span style={{ color: "red", fontSize: 15, marginBottom: 5 }}>
-              Verifica tu Usuario
-            </span>
-          )}
-
-          <Label> Contraseña </Label>
-          <DivPassword>
-            <Input
-              type={activo ? "text" : "Password"}
-              placeholder="Ingresa tu contraseña"
-              {...register("Contraseña", {
-                required: true,
-                minLength: 1,
-                maxLength: 50,
-              })}
-            />
-
-            <button
-              type="button"
-              onMouseUp={() => setActivo(!activo)}
-              onMouseDown={() => setActivo(!activo)}
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+        }}
+      >
+        <div style={{ margin: "0 auto" }}>
+          <Form form={form} onFinish={(data) => onSubmit(data)}>
+            <Form.Item
+              label={"Nombre de usuario o Correo"}
+              name={"NombreUsuario"}
             >
-              {activo == false ? (
-                <IoEyeOutline style={StyleButtonPassword} />
-              ) : (
-                <IoEyeOffOutline style={StyleButtonPassword} />
-              )}
-            </button>
-          </DivPassword>
+              <Input />
+            </Form.Item>
 
-          {errors.Contraseña && (
-            <span style={{ color: "red", fontSize: 15, marginBottom: 5 }}>
-              Verifica tu contraseña
-            </span>
-          )}
-          <Button
-            type="submit"
-            disabled={isLoading || loadingState}
-          >
-            {isLoading || loadingState ? <Spinner /> : "Iniciar sesión"}
-          </Button>
-        </FormContainer>
-      </DivContainerPage>
+            <Form.Item label={"Nombre de usuario o Correo"} name={"Contraseña"}>
+              <Input type="password" />
+            </Form.Item>
+
+            <Form.Item>
+              <Button
+                style={{ background: "blue" }}
+                type="primary"
+                htmlType="submit"
+                disabled={isLoading || loadingState}
+              >
+                {isLoading || loadingState ? <Spin /> : "Ingresar al sistema"}
+              </Button>
+            </Form.Item>
+          </Form>
+        </div>
+      </div>
     </>
   );
 }

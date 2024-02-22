@@ -12,7 +12,7 @@ import { useGetPersonalInfoQuery } from "../../redux/Api/employeeApi";
 import { useEffect, useState } from "react";
 
 export function DetailEmpleado() {
-  let navegation = useNavigate();
+  let navigation = useNavigate();
   const valor = useParams();
 
   // Traer las empresas solo cuando se este en modo editar:
@@ -32,7 +32,7 @@ export function DetailEmpleado() {
       <ButtonIcon
         style={{ marginLeft: 10 }}
         onClick={() => {
-          navegation("/empleado");
+          navigation("/empleado");
         }}
       >
         <IoReturnDownBackOutline size={25} />

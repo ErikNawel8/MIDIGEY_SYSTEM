@@ -14,9 +14,7 @@ export const ViewContainerPages2 = styled.div`
   padding-left: 80px;
   padding-top: 70px;
   height: 100%;
-  width: 99vw;
-
-  diisplay: flex;
+  width: 100%;
   justify-content: center;
   background-color: ${Colores.fondo};
 `;

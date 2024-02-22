@@ -24,7 +24,7 @@ export default function TablaComponent({
   setSelectedItem,
   setOpenDrawerForm,
 }) {
-  const navegation = useNavigate();
+  const navigation = useNavigate();
 
   const [filteredData, setFilteredData] = useState(dataProducts?.result);
 
@@ -111,7 +111,7 @@ export default function TablaComponent({
             alignItems: "center",
           }}
           onClick={() => {
-            navegation(`/cliente/${selectedItem.idCliente}`);
+            navigation(`/cliente/${selectedItem.idCliente}`);
           }}
         >
           <IoEyeOutline size={18} style={{ marginLeft: 5, marginRight: 5 }} />

@@ -37,7 +37,7 @@ export default function TablaComponent({
   const handleDrop = (index) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? -1 : index));
   };
-  // const navegation = useNavigate();
+  // const navigation = useNavigate();
   const [filteredData, setFilteredData] = useState(data?.Result);
   const handleSearch = (value) => {
     const searchTerm = value.toLowerCase();
@@ -169,7 +169,7 @@ export default function TablaComponent({
                       {/* <ButtonIconMenuTalba
                         onClick={() => {
                           handleDrop(-1);
-                          navegation(`/Proveedores/${record.IdUsuario}`);
+                          navigation(`/Proveedores/${record.IdUsuario}`);
                         }}
                       >
                         <IoEyeOutline

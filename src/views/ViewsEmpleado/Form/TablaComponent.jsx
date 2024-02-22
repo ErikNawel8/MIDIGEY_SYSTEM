@@ -37,7 +37,7 @@ export default function TablaComponent({
     setOpenIndex((prevIndex) => (prevIndex === index ? -1 : index));
   };
 
-  const navegation = useNavigate();
+  const navigation = useNavigate();
 
   const [filteredData, setFilteredData] = useState([]);
 
@@ -171,7 +171,7 @@ export default function TablaComponent({
                       <ButtonIconMenuTalba
                         onClick={() => {
                           handleDrop(-1);
-                          navegation(`/empleado/${record.IdEmpleado}`);
+                          navigation(`/empleado/${record.IdEmpleado}`);
                           
                         }}
                       >

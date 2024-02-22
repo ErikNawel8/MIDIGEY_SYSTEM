@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { Column, Row } from "../components";
 import MenuBar from "../layout/MenuBar";
-import Navegation from "../layout/Navegation";
+import Navigation from "../layout/Navigation";
 
 import { JwtUtils } from ".";
 
@@ -23,7 +23,7 @@ const RequireLogin = () => {
   return (
     <>
       <Row>
-        <Navegation />
+        <Navigation />
         <Column>
           <MenuBar />
           <Outlet />
