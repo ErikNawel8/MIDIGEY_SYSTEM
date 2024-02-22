@@ -21,3 +21,52 @@ END
 --- EXEC dbo.GetUsuarioLogin @
 GO
 
+GO
+
+
+CREATE PROCEDURE ObtenerListaMateriales
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        IdMaterial,
+        Nombre,
+        Codigo,
+        Descripcion,
+        Modelo,
+        TieneVencimiento,
+        IdUnidadDeMedida,
+        IdEstado,
+        IdCreadoPor,
+        FechaCreacion,
+        IdModificadoPor,
+        FechaModificacion,
+        IdEstadoRegistro
+    FROM 
+        Materiales;
+END;
+
+GO
+
+-- EXEC ObtenerListaMateriales
+
+
+GO
+CREATE PROCEDURE ObtenerListaEmpleados
+AS
+BEGIN
+    SELECT 
+        IdEmpleado,
+        NombreEmpleado,
+        ApellidoEmpleado,
+        Direccion,
+        Identificacion,
+        Email
+    FROM 
+        Empleados;
+END;
+GO
+
+
+-- EXEC ObtenerListaEmpleados

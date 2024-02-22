@@ -337,12 +337,15 @@ VALUES
 
 GO
 -- INSETAR EN LA TABLA PRODUCTOS
-INSERT INTO Materiales (IdUnidadDeMedida, Nombre, Codigo, Descripcion, Modelo, TieneVencimiento, IdUnidadDeMedida, IdEstado, IdCreadoPor, FechaCreacion, IdModificadoPor, FechaModificacion, IdEstadoRegistro)
-VALUES (3, 'Guantes de látex', 'GUANT001', 'Guantes de látex desechables para procedimientos médicos', 'Talla M', 1, 2, 1, 1, GETDATE(), 1, GETDATE(), 1);
+-- Insertar registros en la tabla Materiales
+INSERT INTO Materiales (Nombre, Codigo, Descripcion, Modelo, TieneVencimiento, IdUnidadDeMedida, IdEstado, IdCreadoPor, FechaCreacion, IdModificadoPor, FechaModificacion, IdEstadoRegistro)
+VALUES ('Guantes de látex', 'G01', 'Guantes de látex desechables para procedimientos médicos', 'Talla M', 1, 3, 1, 1, GETDATE(), 1, GETDATE(), 1);
 
-INSERT INTO Materiales (IdUnidadDeMedida, Nombre, Codigo, Descripcion, Modelo, TieneVencimiento, IdUnidadDeMedida, IdEstado, IdCreadoPor, FechaCreacion, IdModificadoPor, FechaModificacion, IdEstadoRegistro)
-VALUES (3, 'Jeringas de 5ml', 'JERI001', 'Jeringas estériles de 5ml para administración de medicamentos', 'Estándar', 0, 2, 1, 1, GETDATE(), 1, GETDATE(), 1);
+INSERT INTO Materiales (Nombre, Codigo, Descripcion, Modelo, TieneVencimiento, IdUnidadDeMedida, IdEstado, IdCreadoPor, FechaCreacion, IdModificadoPor, FechaModificacion, IdEstadoRegistro)
+VALUES ('Jeringas de 5ml', 'JE01', 'Jeringas estériles de 5ml para administración de medicamentos', 'Estándar', 0, 3, 1, 1, GETDATE(), 1, GETDATE(), 1);
 
-INSERT INTO Materiales (IdUnidadDeMedida, Nombre, Codigo, Descripcion, Modelo, TieneVencimiento, IdUnidadDeMedida, IdEstado, IdCreadoPor, FechaCreacion, IdModificadoPor, FechaModificacion, IdEstadoRegistro)
-VALUES (3, 'Gasas estériles', 'GASA001', 'Gasas estériles para limpieza y curación de heridas', '10x10 cm', 0, 2, 1, 1, GETDATE(), 1, GETDATE(), 1);
--- Select * FROM Productos
+INSERT INTO Materiales (Nombre, Codigo, Descripcion, Modelo, TieneVencimiento, IdUnidadDeMedida, IdEstado, IdCreadoPor, FechaCreacion, IdModificadoPor, FechaModificacion, IdEstadoRegistro)
+VALUES ('Gasas estériles', 'G01', 'Gasas estériles para limpieza y curación de heridas', '10x10 cm', 0, 3, 1, 1, GETDATE(), 1, GETDATE(), 1);
+
+
+-- Select * FROM Materiales
