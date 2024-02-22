@@ -30,16 +30,16 @@ namespace MEDIGET_API.DTO
 
         // Propiedad para deserializar la cadena JSON a lista de objetos CargoEmpleadoDTO
         [JsonIgnore]
-        public List<CargoEmpleadoDTO2> CargoEmpleadoDTOs
+        public List<CargoEmpleadoDTO> CargoEmpleadoDTOs
         {
             get
             {
                 if (CargoEmpleadoDTOsJson == null)
                 {
-                    return new List<CargoEmpleadoDTO2>(); // O puedes devolver null, dependiendo de tus necesidades.
+                    return new List<CargoEmpleadoDTO>(); // O puedes devolver null, dependiendo de tus necesidades.
                 }
 
-                return JsonConvert.DeserializeObject<List<CargoEmpleadoDTO2>>(CargoEmpleadoDTOsJson);
+                return JsonConvert.DeserializeObject<List<CargoEmpleadoDTO>>(CargoEmpleadoDTOsJson);
             }
             set { CargoEmpleadoDTOsJson = JsonConvert.SerializeObject(value); }
         }
@@ -52,9 +52,16 @@ namespace MEDIGET_API.DTO
         public int IdEmpleado { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
-    
 
-    
+    }
 
+    public class EmpleadoDTOVAA
+    {
+        public int IdEmpleado { get; set; }
+        public string NombreEmpleado { get; set; }
+        public string ApellidoEmpleado { get; set; }
+        public string Direccion { get; set; }
+        public string Identificacion { get; set; }
+        public string Email { get; set; }
     }
 }

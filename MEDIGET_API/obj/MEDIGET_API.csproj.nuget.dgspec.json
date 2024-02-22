@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ingju\\OneDrive\\Escritorio\\Publica Backend\\MEDIGET_API\\MEDIGET_API\\MEDIGET_API.csproj": {}
+    "D:\\UCE Desktop 3\\Enero - Abril 2023 (11 Semestre)\\Anteproyecto de Grado\\Trabajo ordenado\\Tesis\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ingju\\OneDrive\\Escritorio\\Publica Backend\\MEDIGET_API\\MEDIGET_API\\MEDIGET_API.csproj": {
+    "D:\\UCE Desktop 3\\Enero - Abril 2023 (11 Semestre)\\Anteproyecto de Grado\\Trabajo ordenado\\Tesis\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ingju\\OneDrive\\Escritorio\\Publica Backend\\MEDIGET_API\\MEDIGET_API\\MEDIGET_API.csproj",
+        "projectUniqueName": "D:\\UCE Desktop 3\\Enero - Abril 2023 (11 Semestre)\\Anteproyecto de Grado\\Trabajo ordenado\\Tesis\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj",
         "projectName": "MEDIGET_API",
-        "projectPath": "C:\\Users\\ingju\\OneDrive\\Escritorio\\Publica Backend\\MEDIGET_API\\MEDIGET_API\\MEDIGET_API.csproj",
+        "projectPath": "D:\\UCE Desktop 3\\Enero - Abril 2023 (11 Semestre)\\Anteproyecto de Grado\\Trabajo ordenado\\Tesis\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj",
         "packagesPath": "C:\\Users\\ingju\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ingju\\OneDrive\\Escritorio\\Publica Backend\\MEDIGET_API\\MEDIGET_API\\obj\\",
+        "outputPath": "D:\\UCE Desktop 3\\Enero - Abril 2023 (11 Semestre)\\Anteproyecto de Grado\\Trabajo ordenado\\Tesis\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ingju\\AppData\\Roaming\\NuGet\\NuGet.Config",

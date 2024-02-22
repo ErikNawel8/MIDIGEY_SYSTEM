@@ -7,7 +7,7 @@ namespace MEDIGET_API.Repositories
         // -C-O-N-E-X-I-O-N--D-B---------- METODO Para obtener la conexion:
         public SqlConnection GetConnection(IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("BD_PROYENETT");
+            var connectionString = configuration.GetConnectionString("BD_MEDIGET");
             var connection = new SqlConnection(connectionString);
             return connection;
         }
