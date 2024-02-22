@@ -1,6 +1,8 @@
 USE BD_MAQUINARIAS_V1
 GO
 
+-- Nueva
+
 -- Insertar datos en la tabla EstadosRegistros:
 INSERT INTO EstadosRegistros
   (NombreEstado)
