@@ -1,11 +1,10 @@
-import { LabelNav } from "../components";
-
 import { JwtUtils } from "../utils";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { MdMenu } from "react-icons/md";
-import Link from "antd/es/typography/Link";
 import { BiHomeAlt2 } from "react-icons/bi";
+import { StyledLink } from "./Navigation.styled";
+import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
   const token = localStorage.getItem("token");
@@ -13,60 +12,214 @@ export default function Navigation() {
 
   const location = useLocation();
   const [ruta, setRuta] = useState(location.pathname);
-  console.log("ruta", ruta);
+  console.log(ruta);
+  const navigate = useNavigate();
   return (
     <>
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          background: "red",
+          background: "#003A92",
           width: "290px",
         }}
       >
-        <div style={{ display: "flex", width: "290px" }}>
-          <div>
-            <MdMenu />
+        <div
+          style={{
+            display: "flex",
+            width: "290px",
+            padding: "20px",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ marginRight: "10px" }}>
+            <MdMenu color="white" size={30} />
           </div>
-          <LabelNav
+          <span
             style={{
-              marginTop: 20,
-              marginRight: 14,
               fontSize: 18,
               fontWeight: 600,
               fontFamily: "Jost",
-              letterSpacing: 4,
-              color: "#365583",
+              color: "white",
               overflow: "hidden",
             }}
           >
-            GESTNETT
-          </LabelNav>
+            MEDIGET
+          </span>
         </div>
 
-        {userRol === "Administrador" && (
-          <Link
-            onClick={() => {
-              setRuta("/");
-            }}
-          >
-            <BiHomeAlt2 />
-            <span>Home</span>
-          </Link>
-        )}
+        <div
+          style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+        >
+          {userRol === "Administrador" && (
+            <StyledLink
+              onClick={() => {
+                setRuta("/");
+              }}
+            >
+              <BiHomeAlt2
+                style={{ marginRight: "10px" }}
+                size={22}
+                color="white"
+              />
+              <span
+                style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}
+              >
+                Inicio
+              </span>
+            </StyledLink>
+          )}
 
-        {(userRol === "Administrador" ||
-          userRol === "Administrador" ||
-          userRol === "Asistente") && (
-          <Link
-            onClick={() => {
-              setRuta("/proyecto");
-            }}
-          >
-            <BiHomeAlt2 />
-            <span>Maquinarias</span>
-          </Link>
-        )}
+          {(userRol === "Administrador" ||
+            userRol === "Administrador" ||
+            userRol === "Administrador de centro") && (
+            <StyledLink
+              onClick={() => {
+                setRuta("/proyecto");
+              }}
+            >
+              <BiHomeAlt2
+                style={{ marginRight: "10px" }}
+                size={22}
+                color="white"
+              />
+              <span
+                style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}
+              >
+                Administrar equipamento
+              </span>
+            </StyledLink>
+          )}
+
+          {(userRol === "Administrador" ||
+            userRol === "Administrador" ||
+            userRol === "Administrador de centro") && (
+            <StyledLink
+              onClick={() => {
+                setRuta("/proyecto");
+                navigate("/materiales-lista");
+              }}
+            >
+              <BiHomeAlt2
+                style={{ marginRight: "10px" }}
+                size={22}
+                color="white"
+              />
+              <span
+                style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}
+              >
+                Administrar materiales
+              </span>
+            </StyledLink>
+          )}
+
+          {(userRol === "Administrador" ||
+            userRol === "Administrador" ||
+            userRol === "Asistente") && (
+            <StyledLink
+              onClick={() => {
+                setRuta("/proyecto");
+              }}
+            >
+              <BiHomeAlt2
+                style={{ marginRight: "10px" }}
+                size={22}
+                color="white"
+              />
+              <span
+                style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}
+              >
+                Gestionar Roles
+              </span>
+            </StyledLink>
+          )}
+
+          {(userRol === "Administrador" ||
+            userRol === "Administrador" ||
+            userRol === "Asistente") && (
+            <StyledLink
+              onClick={() => {
+                setRuta("/proyecto");
+              }}
+            >
+              <BiHomeAlt2
+                style={{ marginRight: "10px" }}
+                size={22}
+                color="white"
+              />
+              <span
+                style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}
+              >
+                Control de usuario
+              </span>
+            </StyledLink>
+          )}
+
+          {(userRol === "Administrador" ||
+            userRol === "Administrador" ||
+            userRol === "Asistente") && (
+            <StyledLink
+              onClick={() => {
+                setRuta("/proyecto");
+              }}
+            >
+              <BiHomeAlt2
+                style={{ marginRight: "10px" }}
+                size={22}
+                color="white"
+              />
+              <span
+                style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}
+              >
+                Gestionar proveedores
+              </span>
+            </StyledLink>
+          )}
+
+          {(userRol === "Administrador" ||
+            userRol === "Administrador" ||
+            userRol === "Asistente") && (
+            <StyledLink
+              onClick={() => {
+                setRuta("/proyecto");
+                navigate("/empleados-lista");
+              }}
+            >
+              <BiHomeAlt2
+                style={{ marginRight: "10px" }}
+                size={22}
+                color="white"
+              />
+              <span
+                style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}
+              >
+                Gestionar empleados
+              </span>
+            </StyledLink>
+          )}
+
+          {(userRol === "Administrador" ||
+            userRol === "Administrador" ||
+            userRol === "Asistente") && (
+            <StyledLink
+              onClick={() => {
+                setRuta("/proyecto");
+              }}
+            >
+              <BiHomeAlt2
+                style={{ marginRight: "10px" }}
+                size={22}
+                color="white"
+              />
+              <span
+                style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}
+              >
+                Gestionar reportes
+              </span>
+            </StyledLink>
+          )}
+        </div>
       </div>
     </>
   );

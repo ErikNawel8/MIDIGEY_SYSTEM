@@ -77,7 +77,7 @@ export default function MenuBar() {
     <>
       <DivNav>
         <div>
-          <span>MEDIGET SYSTEM</span>
+          <span style={{ fontWeight: "bold" }}>MEDIGET SYSTEM</span>
         </div>
 
         <OutsideClick onOutsideClick={() => setActivo(false)}>

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 const token = localStorage.getItem("token");
-const baseUrl = "https://localhost:7279/";
+const baseUrl = "https://localhost:7166/";
 
 export const employeeApi = createApi({
   reducerPath: "employeeApi",
@@ -14,7 +14,7 @@ export const employeeApi = createApi({
   tagTypes: ["Employees"],
   endpoints: (builder) => ({
     getEmploye: builder.query({
-      query: () => `/Empleados/obtenerEmpleado`,
+      query: () => `/Empleados/obtenerEmpleados`,
       providesTags: ["Employees"],
     }),
     getPersonalInfo: builder.query({

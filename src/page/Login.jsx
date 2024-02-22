@@ -82,22 +82,48 @@ export default function Login() {
           height: "100vh",
         }}
       >
-        <div style={{ margin: "0 auto" }}>
+        <div
+          style={{
+            margin: "0 auto",
+            background: "#003A92",
+            padding: "30px",
+            borderRadius: "10px",
+          }}
+        >
+          <h1 style={{ fontWeight: "bold", color: "white", padding: "30px" }}>
+            Inicia sesión con tus datos
+          </h1>
           <Form form={form} onFinish={(data) => onSubmit(data)}>
             <Form.Item
-              label={"Nombre de usuario o Correo"}
+              label={
+                <strong style={{ fontWeight: "bold", color: "white" }}>
+                  Usuario o Correo
+                </strong>
+              }
               name={"NombreUsuario"}
             >
               <Input />
             </Form.Item>
 
-            <Form.Item label={"Nombre de usuario o Correo"} name={"Contraseña"}>
+            <Form.Item
+              label={
+                <strong style={{ fontWeight: "bold", color: "white" }}>
+                  Contraseña
+                </strong>
+              }
+              name={"Contraseña"}
+            >
               <Input type="password" />
             </Form.Item>
 
             <Form.Item>
               <Button
-                style={{ background: "blue" }}
+                style={{
+                  background: "blue",
+                  fontWeight: "bold",
+                  color: "white",
+                  minWidth: "200px",
+                }}
                 type="primary"
                 htmlType="submit"
                 disabled={isLoading || loadingState}

@@ -12,6 +12,8 @@ import Home from "./ViewsHome/Home";
 import { Proveedores } from "./Views-Proveedores-Real";
 import { FormularioOrdenesCompras } from "./ViewsInventario/FormularioOrdenesCompras";
 
+import { Materiales } from "./Views-Materiales";
+
 ///importaciones de las views de la app system
 export {
   Clientes,
@@ -27,4 +29,5 @@ export {
   DashBoard,
   Home,
   FormularioOrdenesCompras,
+  Materiales,
 };

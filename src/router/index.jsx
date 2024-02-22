@@ -12,6 +12,7 @@ import {
   //FormFacturacion,
   Clientes,
   FormularioOrdenesCompras,
+  Materiales,
 } from "../views";
 import CuentaPorPagar from "../views/ViewsCuentasPorPagar/CuentaPorPagar";
 import Login from "../page/Login";
@@ -23,6 +24,7 @@ import { Toaster } from "react-hot-toast";
 import Empleado from "../views/ViewsEmpleado/Empleado";
 import { FormConvertToInvoice } from "../views/ViewsCuentaPorCobrar";
 import PagoCuota from "../views/ViewsCuentaPorCobrar/PagoCuota";
+import EmpleadosLista from "../views/Views-Empleados-List/empleados-lista";
 
 export const createRouter = () => {
   const router = createBrowserRouter([
@@ -55,6 +57,27 @@ export const createRouter = () => {
               roles={["Administrador De Usuario", "Administrador"]}
             >
               <Usuario />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/materiales-lista",
+          element: (
+            <ProtectedRoute
+              roles={["Administrador De Usuario", "Administrador", "Administrador de centro"]}
+            >
+              <Materiales />
+            </ProtectedRoute>
+          ),
+        },
+        //
+        {
+          path: "/empleados-lista",
+          element: (
+            <ProtectedRoute
+              roles={["Administrador De Usuario", "Administrador", "Administrador de centro"]}
+            >
+              <EmpleadosLista />
             </ProtectedRoute>
           ),
         },
