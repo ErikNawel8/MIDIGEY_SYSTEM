@@ -4,8 +4,16 @@ import { useLoginUserMutation } from "../redux/Api/AuthApi";
 import { useDispatch } from "react-redux";
 import { JwtUtils } from "../utils";
 import { Button, Form, Input, Spin, message } from "antd";
+import LogoMediget from "../../src/images/logo-mediget.png";
+import LogoMedigetParte2 from "../../src/images/logo-mediget-parte2.png";
 
 import { setUser } from "../redux/Slice/authSlice";
+import {
+  DivContainerPageLogin,
+  DivSubContainerPageLogin,
+} from "./Login.Styled";
+import { FaUserCircle } from "react-icons/fa";
+import { MdLock } from "react-icons/md";
 
 export default function Login() {
   const [form] = Form.useForm();
@@ -72,57 +80,76 @@ export default function Login() {
 
   return (
     <>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100vh",
-        }}
-      >
+      <DivContainerPageLogin>
         <div
           style={{
-            margin: "0 auto",
-            background: "#003A92",
-            padding: "30px",
-            borderRadius: "10px",
+            position: "fixed",
+            top: 0,
+            left: 0,
           }}
         >
-          <h1 style={{ fontWeight: "bold", color: "white", padding: "30px" }}>
-            Inicia sesión con tus datos
-          </h1>
-          <Form form={form} onFinish={(data) => onSubmit(data)}>
+          <img src={LogoMediget} width={320} />
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            bottom: 0,
+            right: 0,
+          }}
+        >
+          <img src={LogoMedigetParte2} width={140} />
+        </div>
+
+        <DivSubContainerPageLogin>
+          <center>
+            <h1 style={{ fontWeight: "bold", color: "white", padding: "30px" }}>
+              Inicia sesión
+            </h1>
+          </center>
+          <Form
+            layout="vertical"
+            form={form}
+            onFinish={(data) => onSubmit(data)}
+          >
             <Form.Item
               label={
-                <strong style={{ fontWeight: "bold", color: "white" }}>
-                  Usuario o Correo
+                <strong style={{ fontSize: "18px", color: "white" }}>
+                  Usuario o Correo:
                 </strong>
               }
               name={"NombreUsuario"}
             >
-              <Input />
+              <Input
+                prefix={<FaUserCircle size={23} />}
+                placeholder="Ingresa tu usuario o correo"
+                size="large"
+              />
             </Form.Item>
 
             <Form.Item
               label={
-                <strong style={{ fontWeight: "bold", color: "white" }}>
-                  Contraseña
+                <strong style={{ fontSize: "18px", color: "white" }}>
+                  Contraseña:
                 </strong>
               }
               name={"Contraseña"}
             >
-              <Input type="password" />
+              <Input
+                prefix={<MdLock size={24} />}
+                placeholder="Ingresa tu contraseña"
+                size="large"
+                type="password"
+              />
             </Form.Item>
 
             <Form.Item>
               <Button
+                size="large"
                 style={{
                   background: "blue",
                   fontWeight: "bold",
                   color: "white",
-                  minWidth: "200px",
+                  width: "100%",
                 }}
                 type="primary"
                 htmlType="submit"
@@ -131,9 +158,15 @@ export default function Login() {
                 {isLoading || loadingState ? <Spin /> : "Ingresar al sistema"}
               </Button>
             </Form.Item>
+
+            <center>
+              <span style={{ color: "white", fontWeight: "bold" }}>
+                ¿Olvidaste tu contraseña?
+              </span>
+            </center>
           </Form>
-        </div>
-      </div>
+        </DivSubContainerPageLogin>
+      </DivContainerPageLogin>
     </>
   );
 }

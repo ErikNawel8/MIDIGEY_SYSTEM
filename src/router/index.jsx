@@ -1,30 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import {
-  CuentaPorCobrar,
-  DashBoard,
-  Inventario,
-  Proyecto,
-  Reporte,
-  Usuario,
-  Home,
-  Proveedores,
-  DetailEmpleado,
-  //FormFacturacion,
-  Clientes,
-  FormularioOrdenesCompras,
-  Materiales,
-} from "../views";
-import CuentaPorPagar from "../views/ViewsCuentasPorPagar/CuentaPorPagar";
+import { Home, Materiales, Empleados } from "../views";
 import Login from "../page/Login";
 import ErrorPages from "../page/ErrorPages";
 import RequireLogin from "../utils/require-login";
 import ProtectedRoute from "./protected-route/protected-route";
-import ConfiguracionPerfil from "../views/ViewUsuario/ConfiguracionPerfil";
 import { Toaster } from "react-hot-toast";
-import Empleado from "../views/ViewsEmpleado/Empleado";
-import { FormConvertToInvoice } from "../views/ViewsCuentaPorCobrar";
-import PagoCuota from "../views/ViewsCuentaPorCobrar/PagoCuota";
-import EmpleadosLista from "../views/Views-Empleados-List/empleados-lista";
+import { Proveedores } from "../views/proveedores";
 
 export const createRouter = () => {
   const router = createBrowserRouter([
@@ -42,29 +23,16 @@ export const createRouter = () => {
           path: "/",
           element: <Home />,
         },
-        {
-          path: "/dashBoard",
-          element: (
-            <ProtectedRoute roles={["Administrador"]}>
-              <DashBoard />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/usuarios",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador De Usuario", "Administrador"]}
-            >
-              <Usuario />
-            </ProtectedRoute>
-          ),
-        },
+        //
         {
           path: "/materiales-lista",
           element: (
             <ProtectedRoute
-              roles={["Administrador De Usuario", "Administrador", "Administrador de centro"]}
+              roles={[
+                "Administrador De Usuario",
+                "Administrador",
+                "Administrador de centro",
+              ]}
             >
               <Materiales />
             </ProtectedRoute>
@@ -72,180 +40,25 @@ export const createRouter = () => {
         },
         //
         {
-          path: "/empleados-lista",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador De Usuario", "Administrador", "Administrador de centro"]}
-            >
-              <EmpleadosLista />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/empleado",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador De Usuario", "Administrador"]}
-            >
-              <Empleado />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/empleado/:IdEmpleado",
-          element: (
-            <ProtectedRoute roles={["Administrador"]}>
-              <DetailEmpleado />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/cliente",
-          element: (
-            <ProtectedRoute roles={["Administrador"]}>
-              <Clientes />
-            </ProtectedRoute>
-          ),
-        },
-        // {
-        //   path: "/cliente/:clienteId",
-        //   element: (
-        //     <ProtectedRoute roles={["Administrador"]}>
-        //       <DetailCliente />
-        //     </ProtectedRoute>
-        //   ),
-        // },
-        {
-          path: "/cuenta-por-pagar",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador", "Asistente Administrativo"]}
-            >
-              <CuentaPorPagar />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/cuenta-por-paga/:ID",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador", "Asistente Administrativo"]}
-            >
-              <FormConvertToInvoice />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/PagarCuotas/:ID",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador", "Asistente Administrativo"]}
-            >
-              <PagoCuota />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/cuenta-por-cobrar",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador", "Asistente Administrativo"]}
-            >
-              <CuentaPorCobrar />
-            </ProtectedRoute>
-          ),
-        },
-        // {
-        //   path: "/cuenta-por-cobrar/form-facturacion",
-        //   element: (
-        //     <ProtectedRoute
-        //       roles={["Administrador", "Asistente Administrativo"]}
-        //     >
-        //       <FormFacturacion />
-        //     </ProtectedRoute>
-        //   ),
-        // },
-        {
-          path: "/cuenta-por-pagar",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador", "Asistente Administrativo"]}
-            >
-              <CuentaPorPagar />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/inventario",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador", "Asistente Administrativo"]}
-            >
-              <Inventario />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/inventario/form-OrdenCompra",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador", "Asistente Administrativo"]}
-            >
-              <FormularioOrdenesCompras />
-            </ProtectedRoute>
-          ),
-        },
-        {
           path: "/proveedores",
           element: (
-            <ProtectedRoute
-              roles={["Administrador", "Asistente Administrativo"]}
-            >
+            <ProtectedRoute roles={["Administrador", "Asistente"]}>
               <Proveedores />
             </ProtectedRoute>
           ),
         },
-        // {
-        //   path: "/proveedores/:IdProveedor",
-        //   element: (
-        //     <ProtectedRoute roles={["Administrador"]}>
-        //       <DetailProveedor />
-        //     </ProtectedRoute>
-        //   ),
-        // },
+        //
         {
-          path: "/proyecto",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador", "Asistente Administrativo", "Asistente"]}
-            >
-              <Proyecto />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/reporte",
-          element: (
-            <ProtectedRoute
-              roles={["Administrador", "Administrador De Usuario"]}
-            >
-              <Reporte />
-            </ProtectedRoute>
-          ),
-        },
-        // Resto de las rutas con comprobaciones de acceso
-        {
-          path: "/Configuracion",
+          path: "/empleados",
           element: (
             <ProtectedRoute
               roles={[
-                "Administrador",
-                "Asistente Administrativo",
-                "Asistente",
                 "Administrador De Usuario",
+                "Administrador",
+                "Administrador de centro",
               ]}
             >
-              <ConfiguracionPerfil />
+              <Empleados />
             </ProtectedRoute>
           ),
         },

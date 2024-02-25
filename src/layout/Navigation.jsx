@@ -1,9 +1,15 @@
 import { JwtUtils } from "../utils";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { MdMenu } from "react-icons/md";
-import { BiHomeAlt2 } from "react-icons/bi";
+import { MdMargin, MdMenu } from "react-icons/md";
+import { MdLocalShipping } from "react-icons/md";
+import { BsPersonVcard } from "react-icons/bs";
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { FaUserCog } from "react-icons/fa";
+import { GrUserAdmin } from "react-icons/gr";
+import { MdHome } from "react-icons/md";
 import { StyledLink } from "./Navigation.styled";
+import { MdCategory } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
@@ -52,34 +58,38 @@ export default function Navigation() {
         <div
           style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
         >
-          {userRol === "Administrador" && (
+          {/************************************************************************/}
+          {(userRol === "Administrador" ||
+            userRol == "Administrdor de centro" ||
+            userRol == "Administrador de inventario" ||
+            userRol == "Asistente") && (
             <StyledLink
               onClick={() => {
                 setRuta("/");
               }}
             >
-              <BiHomeAlt2
-                style={{ marginRight: "10px" }}
-                size={22}
-                color="white"
-              />
+              <MdHome style={{ marginRight: "10px" }} size={22} color="white" />
               <span
-                style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}
+                style={{
+                  color: "white",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                }}
               >
                 Inicio
               </span>
             </StyledLink>
           )}
 
+          {/************************************************************************/}
           {(userRol === "Administrador" ||
-            userRol === "Administrador" ||
             userRol === "Administrador de centro") && (
             <StyledLink
               onClick={() => {
                 setRuta("/proyecto");
               }}
             >
-              <BiHomeAlt2
+              <MdMargin
                 style={{ marginRight: "10px" }}
                 size={22}
                 color="white"
@@ -92,8 +102,8 @@ export default function Navigation() {
             </StyledLink>
           )}
 
+          {/************************************************************************/}
           {(userRol === "Administrador" ||
-            userRol === "Administrador" ||
             userRol === "Administrador de centro") && (
             <StyledLink
               onClick={() => {
@@ -101,7 +111,7 @@ export default function Navigation() {
                 navigate("/materiales-lista");
               }}
             >
-              <BiHomeAlt2
+              <MdCategory
                 style={{ marginRight: "10px" }}
                 size={22}
                 color="white"
@@ -114,15 +124,14 @@ export default function Navigation() {
             </StyledLink>
           )}
 
-          {(userRol === "Administrador" ||
-            userRol === "Administrador" ||
-            userRol === "Asistente") && (
+          {/************************************************************************/}
+          {(userRol === "Administrador" || userRol === "Asistente") && (
             <StyledLink
               onClick={() => {
                 setRuta("/proyecto");
               }}
             >
-              <BiHomeAlt2
+              <GrUserAdmin
                 style={{ marginRight: "10px" }}
                 size={22}
                 color="white"
@@ -135,15 +144,14 @@ export default function Navigation() {
             </StyledLink>
           )}
 
-          {(userRol === "Administrador" ||
-            userRol === "Administrador" ||
-            userRol === "Asistente") && (
+          {/************************************************************************/}
+          {(userRol === "Administrador" || userRol === "Asistente") && (
             <StyledLink
               onClick={() => {
                 setRuta("/proyecto");
               }}
             >
-              <BiHomeAlt2
+              <FaUserCog
                 style={{ marginRight: "10px" }}
                 size={22}
                 color="white"
@@ -156,15 +164,14 @@ export default function Navigation() {
             </StyledLink>
           )}
 
-          {(userRol === "Administrador" ||
-            userRol === "Administrador" ||
-            userRol === "Asistente") && (
+          {/************************************************************************/}
+          {(userRol === "Administrador" || userRol === "Asistente") && (
             <StyledLink
               onClick={() => {
-                setRuta("/proyecto");
+                navigate("/proveedores")
               }}
             >
-              <BiHomeAlt2
+              <MdLocalShipping
                 style={{ marginRight: "10px" }}
                 size={22}
                 color="white"
@@ -177,16 +184,15 @@ export default function Navigation() {
             </StyledLink>
           )}
 
-          {(userRol === "Administrador" ||
-            userRol === "Administrador" ||
-            userRol === "Asistente") && (
+          {/************************************************************************/}
+          {(userRol === "Administrador" || userRol === "Asistente") && (
             <StyledLink
               onClick={() => {
                 setRuta("/proyecto");
-                navigate("/empleados-lista");
+                navigate("/empleados");
               }}
             >
-              <BiHomeAlt2
+              <BsPersonVcard
                 style={{ marginRight: "10px" }}
                 size={22}
                 color="white"
@@ -199,15 +205,14 @@ export default function Navigation() {
             </StyledLink>
           )}
 
-          {(userRol === "Administrador" ||
-            userRol === "Administrador" ||
-            userRol === "Asistente") && (
+          {/************************************************************************/}
+          {(userRol === "Administrador" || userRol === "Asistente") && (
             <StyledLink
               onClick={() => {
                 setRuta("/proyecto");
               }}
             >
-              <BiHomeAlt2
+              <IoDocumentTextOutline
                 style={{ marginRight: "10px" }}
                 size={22}
                 color="white"
