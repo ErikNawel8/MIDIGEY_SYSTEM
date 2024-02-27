@@ -83,10 +83,12 @@ export default function Navigation() {
 
           {/************************************************************************/}
           {(userRol === "Administrador" ||
-            userRol === "Administrador de centro") && (
+            userRol == "Asistente"  ||
+            userRol == "Administrador de centro") && (
             <StyledLink
               onClick={() => {
                 setRuta("/proyecto");
+                navigate("/equipamiento");
               }}
             >
               <MdMargin

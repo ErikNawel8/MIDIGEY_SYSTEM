@@ -6,6 +6,9 @@ import RequireLogin from "../utils/require-login";
 import ProtectedRoute from "./protected-route/protected-route";
 import { Toaster } from "react-hot-toast";
 import { Proveedores } from "../views/proveedores";
+import { EquipamientoMedico } from "../views/equipamiento";
+
+
 
 export const createRouter = () => {
   const router = createBrowserRouter([
@@ -38,17 +41,33 @@ export const createRouter = () => {
             </ProtectedRoute>
           ),
         },
+
         //
-        {
-          path: "/proveedores",
-          element: (
-            <ProtectedRoute roles={["Administrador", "Asistente"]}>
-              <Proveedores />
-            </ProtectedRoute>
-          ),
-        },
-        //
-        {
+      
+
+
+//
+{
+  path: "/proveedores",
+  element: (
+    <ProtectedRoute roles={["Administrador", "Asistente"]}>
+      <Proveedores />
+    </ProtectedRoute>
+  ),
+},
+///////////
+
+
+{
+  path: "/equipamiento", // Agrega la ruta para la vista de equipamiento médico
+  element: (
+    <ProtectedRoute roles={["Administrador", "Asistente", "Administrador de centro"]}>
+      <EquipamientoMedico />
+    </ProtectedRoute>
+  ),
+},
+{
+///////////////////
           path: "/empleados",
           element: (
             <ProtectedRoute
