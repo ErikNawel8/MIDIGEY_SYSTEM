@@ -41,6 +41,10 @@ import uqVerificarReducer from "./Slice/uqVerificarSlice";
 import { entitiesApi } from "./Api/entitiesApi";
 import entitiesReducer from "./Slice/entitieSlice";
 
+// --
+import { hospitalesApi } from "./Api/hospitalesaApi";
+import hospitalesReducer from "./Slice/hospitalesSlice";
+
 export const store = configureStore({
   reducer: {
     //Autenticacion y usuarios
@@ -108,6 +112,10 @@ export const store = configureStore({
     //Unidades ------------------------------------------------------------------------------
     entities: entitiesReducer,
     [entitiesApi.reducerPath]: entitiesApi.reducer,
+
+    //Hospitales
+    hospitales: hospitalesReducer,
+    [hospitalesApi.reducerPath]: hospitalesApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -127,7 +135,8 @@ export const store = configureStore({
       .concat(proyectoApi.middleware)
       .concat(personasApi.middleware)
       .concat(entitiesApi.middleware)
-      .concat(unitsOfMeasurementsApi.middleware),
+      .concat(unitsOfMeasurementsApi.middleware)
+      .concat(hospitalesApi.middleware),
 });
 
 export default store;
