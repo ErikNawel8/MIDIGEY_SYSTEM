@@ -5,7 +5,7 @@ import { MdMargin, MdMenu } from 'react-icons/md'
 import { MdLocalShipping } from 'react-icons/md'
 import { BsPersonVcard } from 'react-icons/bs'
 import { IoDocumentTextOutline } from 'react-icons/io5'
-import { FaUserCog } from 'react-icons/fa'
+import { FaRegHospital, FaUserCog } from 'react-icons/fa'
 import { GrUserAdmin } from 'react-icons/gr'
 import { MdHome } from 'react-icons/md'
 import { StyledLink } from './Navigation.styled'
@@ -65,7 +65,7 @@ export default function Navigation() {
             userRol == 'Asistente') && (
             <StyledLink
               onClick={() => {
-                setRuta('/')
+                navigate('/home')
               }}
             >
               <MdHome style={{ marginRight: '10px' }} size={22} color="white" />
@@ -89,13 +89,13 @@ export default function Navigation() {
                 navigate('/hospitales')
               }}
             >
-              <MdHome style={{ marginRight: '10px' }} size={22} color="white" />
+              <FaRegHospital
+                style={{ marginRight: '10px' }}
+                size={22}
+                color="white"
+              />
               <span
-                style={{
-                  color: 'white',
-                  fontSize: '15px',
-                  fontWeight: 'bold',
-                }}
+                style={{ color: 'white', fontSize: '15px', fontWeight: 'bold' }}
               >
                 Hospitales
               </span>
@@ -147,7 +147,8 @@ export default function Navigation() {
           )}
 
           {/************************************************************************/}
-          {(userRol === 'Administrador' || userRol === 'Asistente') && (
+
+          {/******************************{(userRol === 'Administrador' || userRol === 'Asistente') && (
             <StyledLink
               onClick={() => {
                 setRuta('/proyecto')
@@ -165,12 +166,11 @@ export default function Navigation() {
               </span>
             </StyledLink>
           )}
-
-          {/************************************************************************/}
-          {(userRol === 'Administrador' || userRol === 'Asistente') && (
+******************************************/}
+          {userRol === 'Administrador' && (
             <StyledLink
               onClick={() => {
-                setRuta('/proyecto')
+                navigate('./usuarios')
               }}
             >
               <FaUserCog

@@ -17,9 +17,12 @@ export const employeeApi = createApi({
       query: () => `/Empleados/obtenerEmpleados`,
       providesTags: ["Employees"],
     }),
+    getEmpleadosParaSelectOption: builder.query({
+      query: () => `/Empleados/ListaEmpleadosParaSelectOption`,
+      providesTags: ["Employees"],
+    }),
     getPersonalInfo: builder.query({
-      query: (Id) =>
-        `/Empleados/obtenerInfoPersonal?IdEmpleado=${Id}`,
+      query: (Id) => `/Empleados/obtenerInfoPersonal?IdEmpleado=${Id}`,
       providesTags: ["PersonalInfoEmpleado"],
     }),
     createEmploye: builder.mutation({
@@ -56,4 +59,12 @@ export const employeeApi = createApi({
   }),
 });
 
-export const { useGetEmployeQuery, useGetPersonalInfoQuery, useDeleteEmployeMutation,useRestoreEmployeMutation,useCreateEmployeMutation,useUpdateEmployeMutation} = employeeApi;
+export const {
+  useGetEmployeQuery,
+  useGetEmpleadosParaSelectOptionQuery,
+  useGetPersonalInfoQuery,
+  useDeleteEmployeMutation,
+  useRestoreEmployeMutation,
+  useCreateEmployeMutation,
+  useUpdateEmployeMutation,
+} = employeeApi;

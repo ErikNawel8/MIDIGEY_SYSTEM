@@ -531,3 +531,34 @@ export interface IHospitalDTO {
   Email: string
   Direccion: string
 }
+
+export interface IUsuarioDetalleDTO {
+  IdUsuario: number
+  NombreUsuario: string
+  Correo: string
+  Rol: string
+  IdRol: number
+  NombreCompletoEmpleado: string
+  IdEmpleado: number
+  DireccionEmpleado: string
+  IdentificacionEmpleado: string
+  EmailEmpleado: string
+  Cargo: string
+  Sexo: string
+  FechaCreacion: Date
+  FechaModificacion: Date
+}
+
+export interface IRolesDTO {
+  IdRol: number
+  NombreRol: string
+}
+
+export interface IUsuario {
+  IdUsuario: number
+  NombreUsuario: string
+  Correo: string
+  Contraseña?: string
+  IdRol: number
+  IdEmpleado: number
+}

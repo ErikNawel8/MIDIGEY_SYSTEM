@@ -18,7 +18,7 @@ export const hospitalSlice = createSlice({
 
 export const { setHospitales, setHospital } = hospitalSlice.actions
 
-export const selectPersonas = (state) => state.ListaPersonas.ListaPersonas
-export const selectPersona = (state) => state.Persona.Persona
+export const selectHospitales = (state) => state.ListaPersonas.ListaPersonas
+export const selectHospital = (state) => state.Persona.Persona
 
 export default hospitalSlice.reducer

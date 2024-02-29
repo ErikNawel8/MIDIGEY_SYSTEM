@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Home, Materiales, Empleados } from '../views'
+import { Home, Materiales, Empleados, Usuarios } from '../views'
 import Login from '../page/Login'
 import ErrorPages from '../page/ErrorPages'
 import RequireLogin from '../utils/require-login'
@@ -61,6 +61,33 @@ export const createRouter = () => {
               roles={['Administrador', 'Asistente', 'Administrador de centro']}
             >
               <Maquinarias />
+            </ProtectedRoute>
+          ),
+        },
+
+        ///////////
+
+        {
+          path: '/home', // Agrega la ruta para la vista de maquinarias
+          element: (
+            <ProtectedRoute
+              roles={[
+                'Administrador',
+                'Asistente',
+                'Administrador de centro',
+                'Asistente',
+              ]}
+            >
+              <Home />
+            </ProtectedRoute>
+          ),
+        },
+
+        {
+          path: '/usuarios', // Agrega la ruta para la vista de Control de usuarios
+          element: (
+            <ProtectedRoute roles={['Administrador']}>
+              <Usuarios />
             </ProtectedRoute>
           ),
         },
