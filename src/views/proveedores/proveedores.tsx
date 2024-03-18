@@ -1,160 +1,161 @@
-import {
-  Button,
-  Drawer,
-  Form,
-  Input,
-  Space,
-  Table,
-  TableProps,
-  message,
-} from "antd";
-import TextArea from "antd/es/input/TextArea";
-import React, { useState } from "react";
+import React, { useState } from 'react'
+import { Button, Drawer, Form, Input, Space, Table, message } from 'antd'
+import TextArea from 'antd/es/input/TextArea'
+import { MdOutlineFolderDelete, MdModeEdit } from 'react-icons/md'
 
 const Proveedores = () => {
-  //Estado para controlar cuando se abre/cierra el Drawer
-  const [openDrawerFormProveedor, setOpenDrawerFormProveedor] = useState(false);
-  // True o False          // Dar valor al estado
+  const [openDrawerFormProveedor, setOpenDrawerFormProveedor] = useState(false)
 
-  // Lo que pasara cuando den click a abrir el drawer (Nuevo proveedor)
   const showDrawer = () => {
-    setOpenDrawerFormProveedor(true);
-  };
-
-  // Lo que pasara cuando den click a cerrar el drawer
-  const onCloseDrawer = () => {
-    setOpenDrawerFormProveedor(false);
-  };
-
-  //
-  interface IProveedor {
-    Nombre: string;
-    Apellido: string;
-    Nacionalidad: string;
-    Direccion: string;
-    Correo: string;
-    Telefono: string;
+    setOpenDrawerFormProveedor(true)
   }
 
-  const proveedoresDataArray: IProveedor[] = [
-    {
-      Nombre: "Juan",
-      Apellido: "Pérez",
-      Nacionalidad: "Mexicana",
-      Direccion: "Calle 123",
-      Correo: "juan@example.com",
-      Telefono: "1234567890",
-    },
-    {
-      Nombre: "María",
-      Apellido: "Gómez",
-      Nacionalidad: "Española",
-      Direccion: "Avenida 456",
-      Correo: "maria@example.com",
-      Telefono: "9876543210",
-    },
-    {
-      Nombre: "John",
-      Apellido: "Doe",
-      Nacionalidad: "Estadounidense",
-      Direccion: "Main Street",
-      Correo: "john@example.com",
-      Telefono: "5551234567",
-    },
-    {
-      Nombre: "Luisa",
-      Apellido: "Martínez",
-      Nacionalidad: "Colombiana",
-      Direccion: "Carrera 789",
-      Correo: "luisa@example.com",
-      Telefono: "3219876543",
-    },
-    {
-      Nombre: "Anna",
-      Apellido: "Schmidt",
-      Nacionalidad: "Alemana",
-      Direccion: "Straße 10",
-      Correo: "anna@example.com",
-      Telefono: "1122334455",
-    },
-  ];
+  const onCloseDrawer = () => {
+    setOpenDrawerFormProveedor(false)
+  }
 
-  // Arreglo de columnas para la tabla
-  const columnsTableProveedor: TableProps<IProveedor>["columns"] = [
+  interface IProveedor {
+    key: React.Key
+    Nombre: string
+    Apellido: string
+    Nacionalidad: string
+    Direccion: string
+    Correo: string
+    Telefono: string
+  }
+
+  const [proveedoresDataArray, setProveedoresDataArray] = useState<
+    IProveedor[]
+  >([
     {
-      title: "Nombre",
-      dataIndex: "Nombre",
-      key: "Nombre",
+      key: '1',
+      Nombre: 'Juan',
+      Apellido: 'Pérez',
+      Nacionalidad: 'RD',
+      Direccion: 'Calle 123',
+      Correo: 'juan@example.com',
+      Telefono: '1234567890',
     },
     {
-      title: "Apellido",
-      dataIndex: "Apellido",
-      key: "Apellido",
+      key: '2',
+      Nombre: 'María',
+      Apellido: 'Gómez',
+      Nacionalidad: 'RD',
+      Direccion: 'Avenida 456',
+      Correo: 'maria@example.com',
+      Telefono: '9876543210',
     },
     {
-      title: "Nacionalidad",
-      dataIndex: "Nacionalidad",
-      key: "Nacionalidad",
+      key: '3',
+      Nombre: 'John',
+      Apellido: 'Doe',
+      Nacionalidad: 'RD',
+      Direccion: 'Main Street',
+      Correo: 'john@example.com',
+      Telefono: '5551234567',
     },
     {
-      title: "Correo",
-      dataIndex: "Correo",
-      key: "Correo",
+      key: '4',
+      Nombre: 'Luisa',
+      Apellido: 'Martínez',
+      Nacionalidad: 'RD',
+      Direccion: 'Carrera 789',
+      Correo: 'luisa@example.com',
+      Telefono: '3219876543',
     },
     {
-      title: "Telefono",
-      dataIndex: "Telefono",
-      key: "Telefono",
+      key: '5',
+      Nombre: 'Anna',
+      Apellido: 'Schmidt',
+      Nacionalidad: 'RD',
+      Direccion: 'Straße 10',
+      Correo: 'anna@example.com',
+      Telefono: '1122334455',
+    },
+  ])
+
+  const columnsTableProveedor = [
+    {
+      title: 'Nombre',
+      dataIndex: 'Nombre',
+      key: 'Nombre',
     },
     {
-      title: "Acciones",
-      key: "action",
-      render: (_) => (
+      title: 'Apellido',
+      dataIndex: 'Apellido',
+      key: 'Apellido',
+    },
+    {
+      title: 'Nacionalidad',
+      dataIndex: 'Nacionalidad',
+      key: 'Nacionalidad',
+    },
+    {
+      title: 'Correo',
+      dataIndex: 'Correo',
+      key: 'Correo',
+    },
+    {
+      title: 'Telefono',
+      dataIndex: 'Telefono',
+      key: 'Telefono',
+    },
+    {
+      title: 'Acciones',
+      key: 'action',
+      render: (_, record) => (
         <Space size="middle">
-          <a>Editar</a>
-          <a>Eliminar</a>
+          <MdModeEdit onClick={() => handleEditProveedor(record)} />
+          <MdOutlineFolderDelete
+            onClick={() => handleDeleteProveedor(record)}
+          />
         </Space>
       ),
     },
-  ];
+  ]
 
-  // Codigo HTML que retorna el componente:
+  const handleEditProveedor = (record: IProveedor) => {
+    // Lógica para editar un proveedor
+  }
+
+  const handleDeleteProveedor = (record: IProveedor) => {
+    // Lógica para eliminar un proveedor
+  }
+
   return (
     <div
       style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        marginTop: "100px",
-        marginLeft: "50px",
+        width: '100vw',
+        height: '100vh',
+        padding: '80px',
+        boxSizing: 'border-box',
+        overflow: 'auto',
       }}
     >
       <h1>Listado de proveedores</h1>
-      <Button onClick={() => showDrawer()}>Registrar nuevo proveedor</Button>
+      <Button onClick={showDrawer}>Registrar nuevo proveedor</Button>
       <Table
         dataSource={proveedoresDataArray}
         columns={columnsTableProveedor}
-        style={{ width: "1000px", marginTop: "10px" }}
+        style={{ marginTop: '20px', width: '80%' }}
+        pagination={{ pageSize: 5 }}
       />
 
       <Drawer
-        title="Basic Drawer"
-        onClose={() => onCloseDrawer()}
-        open={openDrawerFormProveedor}
+        title="Registrar nuevo proveedor"
+        onClose={onCloseDrawer}
+        visible={openDrawerFormProveedor}
+        width={300}
+        destroyOnClose
       >
         <Form
           layout="vertical"
-          style={{ maxWidth: 600 }}
-          onFinish={() => message.info("Se va a registrar un proveedor")}
+          onFinish={() => message.info('Se va a registrar un proveedor')}
         >
           <Form.Item
             label="Nombres"
             name="Nombres"
-            rules={[
-              { required: true, message: "El nombre es requerido" },
-              { max: 40, message: "El nombre es muy largo" },
-              { min: 10, message: "El nombre es muy corto" },
-            ]}
+            rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
@@ -162,23 +163,19 @@ const Proveedores = () => {
           <Form.Item
             label="Apellidos"
             name="Apellidos"
-            rules={[{ required: true, message: "El apellido es requerido" }]}
+            rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
 
-          <Form.Item
-            label="Correo"
-            name="Correo"
-            rules={[{ required: true, message: "Please input your username!" }]}
-          >
+          <Form.Item label="Correo" name="Correo" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
 
           <Form.Item
             label="Telefono"
             name="Telefono"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
@@ -186,12 +183,12 @@ const Proveedores = () => {
           <Form.Item
             label="Direccion"
             name="Direccion"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[{ required: true }]}
           >
             <TextArea />
           </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Form.Item>
             <Button type="primary" htmlType="submit">
               Registrar proveedor
             </Button>
@@ -199,7 +196,7 @@ const Proveedores = () => {
         </Form>
       </Drawer>
     </div>
-  );
-};
+  )
+}
 
-export default Proveedores;
+export default Proveedores

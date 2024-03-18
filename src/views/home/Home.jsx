@@ -89,32 +89,41 @@ const SystemDescription = styled.p`
 
 export default function Home() {
   return (
-    <PageContainer>
-      <ContentWrapper>
-        <MainContainer>
-          <LogoContainer>
-            <Logo src={LogoMediget} alt="Mediget Logo" />
-          </LogoContainer>
-          <TextContainer>
-            <Text>HOME MEDIGET SYSTEM</Text>
-            <SystemDescription>
-              El Sistema Mediget es una plataforma especializada en la gestión
-              eficiente del mantenimiento correctivo de maquinarias médicas.
-              Permite registrar, controlar y gestionar los tiempos de
-              mantenimiento, así como la información relacionada, asegurando el
-              funcionamiento óptimo de los equipos médicos en el tiempo.
-            </SystemDescription>
-          </TextContainer>
-        </MainContainer>
-        <AdditionalContainer>
-          <LogoContainer>
-            <Logo src={LogoMediget} alt="Mediget Logo" />
-          </LogoContainer>
-          <TextContainer>
-            <Text>Bienvenido al Sistema Mediget</Text>
-          </TextContainer>
-        </AdditionalContainer>
-      </ContentWrapper>
-    </PageContainer>
+    <div
+      style={{
+        padding: '80px',
+        paddingLeft: '30px',
+        paddingRight: '30px',
+        width: 'calc(100vw - 290px)',
+      }}
+    >
+      <PageContainer>
+        <ContentWrapper>
+          <MainContainer>
+            <LogoContainer>
+              <Logo src={LogoMediget} alt="Mediget Logo" />
+            </LogoContainer>
+            <TextContainer>
+              <Text>HOME MEDIGET SYSTEM</Text>
+              <SystemDescription>
+                El Sistema Mediget es una plataforma especializada en la gestión
+                eficiente del mantenimiento correctivo de maquinarias médicas.
+                Permite registrar, controlar y gestionar los tiempos de
+                mantenimiento, así como la información relacionada, asegurando
+                el funcionamiento óptimo de los equipos médicos en el tiempo.
+              </SystemDescription>
+            </TextContainer>
+          </MainContainer>
+          <AdditionalContainer>
+            <LogoContainer>
+              <Logo src={LogoMediget} alt="Mediget Logo" />
+            </LogoContainer>
+            <TextContainer>
+              <Text>Bienvenido al Sistema Mediget</Text>
+            </TextContainer>
+          </AdditionalContainer>
+        </ContentWrapper>
+      </PageContainer>
+    </div>
   )
 }

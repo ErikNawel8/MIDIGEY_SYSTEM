@@ -559,6 +559,118 @@ export interface IUsuario {
   NombreUsuario: string
   Correo: string
   Contraseña?: string
-  IdRol: number
+  RolesIds?: number[]
   IdEmpleado: number
+}
+
+export interface IHospital {
+  IdHospital: number
+  Nombre: string
+  Codigo: string
+  IdMunicipio: number
+  Telefono1: string
+  Telefono2: string
+  Descripcion: string
+  Email: string
+  Direccion: string
+  IdCreadoPor?: number
+  FechaCreacion?: Date
+  IdModificadoPor?: number
+  FechaModificacion?: Date
+  IdEstadoRegistro: number
+}
+
+export interface IRegionDTO {
+  IdRegion: number
+  NombreRegion: string
+}
+
+export interface IVistaModuloDTO {
+  IdVistaModulo: number
+  NombreVistaModulo: string
+}
+
+export interface IProvinciaDTO {
+  IdProvincia: number
+  NombreProvincia: string
+  IdRegion: number
+}
+
+export interface IMunicipioDTO {
+  IdMunicipio: number
+  NombreMunicipio: string
+  IdProvincia: number
+}
+
+export interface IMaquinariasDTO {
+  IdMaquinaria: number
+  NombreMaquinaria: string
+  DescripcionMaquinaria: string
+  NombreProveedor: string
+  ApellidoProveedor: string
+  NumeroSerie: string
+  Modelo: string
+  Estado: string
+  PrecioCosto: number
+  TiempoVidaUtil: number
+  TiempoEnUsoParaMant: number
+  FechaInicioUso?: Date | null
+  FechaFinUso?: Date | null
+  FechaInicioMantenimiento?: Date | null
+  FechaFinMantenimiento?: Date | null
+  DescripcionMantenimiento: string
+  EstadoRegistro: string
+}
+
+export interface IRol {
+  IdRol: number
+  NombreRol: string
+  Descripcion: string
+  Valoracion: number
+  IdEstadoRegistro: number
+  IdsVistasModulosRoles: number[]
+  FechaCreacion?: number | null
+  IdCreadoPor?: number | null
+  FechaModificacion?: number | null
+  IdModificadoPor?: number | null
+}
+
+export interface IUsuarioDTO {
+  IdUsuario: number
+  NombreUsuario: string
+  Contraseña: string
+  Correo: string
+  NombreEstado: string
+  IdEstadoRegistro: number
+  IdEmpleado: number
+  Empleado: string
+  Roles: IRol[]
+}
+
+export interface IRolListaDTO {
+  IdRol: number
+  NombreRol: string
+  Descripcion: string
+  IdEstadoRegistro: number
+  Valoracion: number
+  NombreEstado: string
+  IdCreadoPor: number
+  NombreUsuarioCreadoPor: string
+  FechaCreacion: Date
+  IdsVistasModulosRoles: number[]
+}
+
+export interface CambiarEstadoRol {
+  IdRol: number
+}
+
+export interface IRolEstado {
+  IdRol: number
+  IdEstado: number
+}
+
+export interface VistaModuloValuesConfiguracion {
+  IdVistaModulo: number
+  NombreVistaModulo: string
+  RolesConAcceso?: number[] | null
 }

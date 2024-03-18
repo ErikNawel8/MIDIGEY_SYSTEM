@@ -4,3 +4,4 @@ export { DivRoll } from "./Menu/DivRoll";
 export { Column } from "./LayoutComponent/Column";
 export { Row } from "./LayoutComponent/Row";
 export { ViewContainerPages2 } from "./LayoutComponent/ViewContainerPages";
+export { ModalCambiarEstado } from "./modal-cambiar-estado";

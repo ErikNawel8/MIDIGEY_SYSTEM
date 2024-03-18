@@ -12,7 +12,7 @@ export const usuariosDetallesApi = createApi({
       Authorization: `Bearer ${token}`,
     },
   }),
-  tagTypes: ['UsuariosDetalles'],
+  tagTypes: ['UsuariosDetalles', 'GetEmployeesForSelectOption'],
 
   endpoints: (builder) => ({
     // --- Solicitud Get Lista de usuarios
@@ -27,8 +27,14 @@ export const usuariosDetallesApi = createApi({
         method: 'POST',
         body: usuario,
       }),
-      invalidatesTags: ['UsuariosDetalles'],
+      invalidatesTags: ['UsuariosDetalles', 'GetEmployeesForSelectOption'],
     }),
+    //
+    getEmpleadosParaFormCreateUser: builder.query({
+      query: () => `/Empleados/ListaEmpleadosParaSelectOption`,
+      providesTags: ['GetEmployeesForSelectOption'],
+    }),
+    //
     updateUsuario: builder.mutation({
       query: (dataClient) => ({
         url: '/Clientes/actualizarCliente',
@@ -55,6 +61,7 @@ export const usuariosDetallesApi = createApi({
 })
 
 export const {
+  useGetEmpleadosParaFormCreateUserQuery,
   useGetUsuariosQuery,
   useCreateUsuarioMutation,
   useUpdateUsuarioMutation,

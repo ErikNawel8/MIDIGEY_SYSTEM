@@ -18,6 +18,26 @@ import usuariosDetallesReducer from "./Slice/usuariosDetallesSlice";
 import { rolesApi } from "./Api/rolesApi";
 import rolesReducer from "./Slice/rolesSlice";
 
+// --
+import { regionesApi } from "./Api/regionesApi";
+import regionesReducer from "./Slice/regionesSlice";
+
+// --
+import { provinciasApi } from "./Api/provinciasApi";
+import provinciasReducer from "./Slice/provinciasSlice";
+
+// --
+import { municipiosApi } from "./Api/municipiosApi";
+import municipiosReducer from "./Slice/municipioSlice";
+
+//--
+import { maquinariasApi } from "./Api/maquinariasApi";
+import maquinariasReducer from "./Slice/maquinariasSlice";
+
+//--
+import { vistasModulosApi } from "./Api/vistasModulosApi";
+import vistasModulosReducer from "./Slice/vistasModulosSlice";
+
 export const store = configureStore({
   reducer: {
     //Autenticacion y usuarios
@@ -39,6 +59,26 @@ export const store = configureStore({
     //UsuariosDetalles
     usuarios: usuariosDetallesReducer,
     [usuariosDetallesApi.reducerPath]: usuariosDetallesApi.reducer,
+
+    //Regiones
+    usuarios: regionesReducer,
+    [regionesApi.reducerPath]: regionesApi.reducer,
+
+    //Provincias
+    provincias: provinciasReducer,
+    [provinciasApi.reducerPath]: provinciasApi.reducer,
+
+    //Municipios
+    municipios: municipiosReducer,
+    [municipiosApi.reducerPath]: municipiosApi.reducer,
+
+    //Maquinarias
+    maquinarias: maquinariasReducer,
+    [maquinariasApi.reducerPath]: maquinariasApi.reducer,
+
+    //VistasModuloss
+    vistasModulos: vistasModulosReducer,
+    [vistasModulosApi.reducerPath]: vistasModulosApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -46,7 +86,12 @@ export const store = configureStore({
       .concat(employeeApi.middleware)
       .concat(hospitalesApi.middleware)
       .concat(usuariosDetallesApi.middleware)
-      .concat(rolesApi.middleware),
+      .concat(rolesApi.middleware)
+      .concat(regionesApi.middleware)
+      .concat(provinciasApi.middleware)
+      .concat(municipiosApi.middleware)
+      .concat(maquinariasApi.middleware)
+      .concat(vistasModulosApi.middleware),
 });
 
 export default store;

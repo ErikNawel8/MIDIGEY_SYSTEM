@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
-import { IClienteDTO, IHospitalDTO, IResponseApi } from '../../interfaces'
+import {
+  IClienteDTO,
+  IHospital,
+  IHospitalDTO,
+  IResponseApi,
+} from '../../interfaces'
 
 const token = localStorage.getItem('token')
 const baseUrl = 'https://localhost:7166/'
@@ -20,8 +25,8 @@ export const hospitalesApi = createApi({
       providesTags: ['Hospitales'],
     }),
     createHospital: builder.mutation({
-      query: (newClient) => ({
-        url: '/Clientes/insertarClientes',
+      query: (newClient: IHospital) => ({
+        url: '/Hospitales/InsertarHospital',
         method: 'POST',
         body: newClient,
       }),

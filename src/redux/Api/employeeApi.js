@@ -11,16 +11,19 @@ export const employeeApi = createApi({
       Authorization: `Bearer ${token}`,
     },
   }),
-  tagTypes: ["Employees"],
+  tagTypes: ["Employees", "getEmpleadosParaSelectOption"],
   endpoints: (builder) => ({
+    //
     getEmploye: builder.query({
       query: () => `/Empleados/obtenerEmpleados`,
       providesTags: ["Employees"],
     }),
+    //
     getEmpleadosParaSelectOption: builder.query({
       query: () => `/Empleados/ListaEmpleadosParaSelectOption`,
-      providesTags: ["Employees"],
+      providesTags: ["getEmpleadosParaSelectOption"],
     }),
+    //
     getPersonalInfo: builder.query({
       query: (Id) => `/Empleados/obtenerInfoPersonal?IdEmpleado=${Id}`,
       providesTags: ["PersonalInfoEmpleado"],

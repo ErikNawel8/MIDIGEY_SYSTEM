@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Home, Materiales, Empleados, Usuarios } from '../views'
+import { Home, Materiales, Empleados, Usuarios, Roles } from '../views'
 import Login from '../page/Login'
 import ErrorPages from '../page/ErrorPages'
 import RequireLogin from '../utils/require-login'
@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast'
 import { Proveedores } from '../views/proveedores'
 import { Maquinarias } from '../views/maquinarias'
 import { Hospitales } from '../views/hospitales'
+import { useGetVistasModulosConRolesAccesosQuery } from '../redux/Api/vistasModulosApi'
 
 export const createRouter = () => {
   const router = createBrowserRouter([
@@ -91,6 +92,16 @@ export const createRouter = () => {
             </ProtectedRoute>
           ),
         },
+
+        {
+          path: '/gestionar-roles', // Agrega la ruta para la vista de Control de usuarios
+          element: (
+            <ProtectedRoute roles={['Administrador']}>
+              <Roles />
+            </ProtectedRoute>
+          ),
+        },
+
         {
           path: '/hospitales', // Agrega la ruta para la vista de hospitales
           element: (

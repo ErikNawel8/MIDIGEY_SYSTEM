@@ -10,8 +10,10 @@ import {
   Table,
 } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
+import { MdOutlineFolderDelete } from 'react-icons/md'
+import { FaRegEdit } from 'react-icons/fa'
 import { ColumnProps, ColumnType } from 'antd/es/table'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsPersonVcard } from 'react-icons/bs'
 import ModalShowLoading from '../../components/modal-show-loading/modal-show-loading'
 import { IHospitalDTO, IUsuario, IUsuarioDetalleDTO } from '../../interfaces'
@@ -20,6 +22,7 @@ import { useGetHospitalesQuery } from '../../redux/Api/hospitalesaApi'
 import { useGetRolesQuery } from '../../redux/Api/rolesApi'
 import {
   useCreateUsuarioMutation,
+  useGetEmpleadosParaFormCreateUserQuery,
   useGetUsuariosQuery,
 } from '../../redux/Api/usuariosdetallesApi'
 
@@ -48,10 +51,22 @@ const Usuarios = () => {
   const {
     data: empleadosData,
     isLoading: isLoadingEmpleados,
-  } = useGetEmpleadosParaSelectOptionQuery('')
+  } = useGetEmpleadosParaFormCreateUserQuery('')
 
   //Fetch para obtener la lista de Roles para SelecOption:
   const { data: rolesData, isLoading: isLoadingRoles } = useGetRolesQuery()
+
+  const [empleadosSinUsuario, setEmpleadosSinUsuario] = useState([])
+
+  useEffect(() => {
+    if (empleadosData) {
+      // Filtrar empleados que no tienen usuario
+      const empleadosFiltrados = empleadosData.Result.filter(
+        (empleado) => !empleado.YaTieneUsuario,
+      )
+      setEmpleadosSinUsuario(empleadosFiltrados)
+    }
+  }, [empleadosData])
 
   //Fetch peticion para el create/insert de Usuario:
   const [
@@ -69,7 +84,7 @@ const Usuarios = () => {
       setOpenDrawerFormUsuario(false)
       form.resetFields()
     } else if (isErrorCreate) {
-      message.success('Error al crear el usuario')
+      message.error('Error al crear el usuario')
     }
   }, [isCreateSuccess, isErrorCreate])
 
@@ -135,7 +150,6 @@ const Usuarios = () => {
                     IdUsuario: record.IdUsuario,
                     NombreUsuario: record.NombreUsuario,
                     Correo: record.Correo,
-                    IdRol: record.IdUsuario,
                     IdEmpleado: record.IdEmpleado,
                   }
 
@@ -150,8 +164,8 @@ const Usuarios = () => {
             }
             style={{ marginRight: '10px', cursor: 'pointer' }}
           />
-          <BsPersonVcard style={{ marginRight: '10px' }} />
-          <BsPersonVcard />
+          <FaRegEdit style={{ marginRight: '10px' }} />
+          <MdOutlineFolderDelete style={{ marginRight: '10px' }} />
         </div>
       ),
     },
@@ -246,7 +260,9 @@ const Usuarios = () => {
             >
               <Select
                 loading={isLoadingEmpleados}
-                options={empleadosData?.Result.map((option) => ({
+                options={empleadosData?.Result.filter(
+                  (empleado) => empleado.YaTieneUsuario === false,
+                ).map((option) => ({
                   label: option.NombreCompleto,
                   value: option.IdEmpleado,
                 }))}
@@ -265,8 +281,9 @@ const Usuarios = () => {
               />
             </Form.Item>
 
-            <Form.Item label="Rol" name={'IdRol'}>
+            <Form.Item label="Rol" name={'RolesIds'}>
               <Select
+                mode="multiple"
                 loading={isLoadingRoles}
                 options={rolesData?.Result.map((option) => ({
                   label: option.NombreRol,
