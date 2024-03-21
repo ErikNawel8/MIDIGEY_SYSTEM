@@ -9,6 +9,8 @@ using MEDIGET_API.Segurity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Data;
+using MEDIGET_API.DTO;
 
 namespace MEDIGET_API.Controllers
 {
@@ -17,8 +19,9 @@ namespace MEDIGET_API.Controllers
     public class UsuarioController : ControllerBase
     {
         protected Respuesta _respuesta;
+        private UsuarioDTO usuario;
         private readonly IConfiguration _configuration;
-        private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly Repositories.IUsuarioRepositorio _usuarioRepositorio;
 
         public UsuarioController(IConfiguration configuration)
         {
@@ -37,7 +40,7 @@ namespace MEDIGET_API.Controllers
             var data = JsonConvert.DeserializeObject<dynamic>(usuarioData.ToString());
 
             string NombreUsuario = data.NombreUsuario.ToString();
-            string Contraseña = Segurity.Segurity.HashPassword(data.Contraseña.ToString());
+            string Contraseña = data.Contraseña.ToString();
             var resultSetDataUser = _usuarioRepositorio.GetUsuarioLogin(NombreUsuario, Contraseña);
 
             if (resultSetDataUser?.NombreUsuario == null)
@@ -53,6 +56,9 @@ namespace MEDIGET_API.Controllers
             var conf = _configuration;
             var jwt = _configuration.GetSection("Jwt").Get<Jwt>();
 
+            // Serializa la lista de roles a JSON
+            string rolesJson = JsonConvert.SerializeObject(resultSetDataUser.Roles);
+
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, jwt.Subject),
@@ -60,7 +66,7 @@ namespace MEDIGET_API.Controllers
                 new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                 new Claim("IdUsuario", resultSetDataUser.IdUsuario.ToString()),
                 new Claim("NombreUsuario", resultSetDataUser.NombreUsuario),
-                new Claim("NombreRol", resultSetDataUser.NombreRol),
+                new Claim("Roles", rolesJson),
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.key));
             var singIng = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -100,29 +106,6 @@ namespace MEDIGET_API.Controllers
             {
                 _respuesta.IsSuccess = false;
                 _respuesta.DisplayMessage = "Error al solicitar la lista de usuarios";
-                _respuesta.ErrorMessages = new List<string> { ex.ToString() };
-            }
-
-            return Ok(_respuesta);
-
-        }
-
-        // .A.C.C.I.O.N -- Para obtener la lista basica de Usuario: --------------------------------------------
-        //[Authorize]
-        [Route("obtenerEmpleado")]
-        [HttpGet]
-        public IActionResult getEmpleadoUsuario()
-        {
-            try
-            {
-                var listaEmpleados = _usuarioRepositorio.GetEmpleadoParaUsuario();
-                _respuesta.Result = listaEmpleados;
-                _respuesta.DisplayMessage = "Listado de empleado obtenido con exito:";
-            }
-            catch (Exception ex)
-            {
-                _respuesta.IsSuccess = false;
-                _respuesta.DisplayMessage = "Error al solicitar la lista de empleado";
                 _respuesta.ErrorMessages = new List<string> { ex.ToString() };
             }
 

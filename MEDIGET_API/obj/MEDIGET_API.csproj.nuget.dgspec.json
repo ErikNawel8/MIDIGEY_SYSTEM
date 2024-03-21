@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\UCE Desktop 3\\Enero - Abril 2023 (11 Semestre)\\Anteproyecto de Grado\\Trabajo ordenado\\Tesis\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj": {}
+    "D:\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj": {}
   },
   "projects": {
-    "D:\\UCE Desktop 3\\Enero - Abril 2023 (11 Semestre)\\Anteproyecto de Grado\\Trabajo ordenado\\Tesis\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj": {
+    "D:\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UCE Desktop 3\\Enero - Abril 2023 (11 Semestre)\\Anteproyecto de Grado\\Trabajo ordenado\\Tesis\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj",
+        "projectUniqueName": "D:\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj",
         "projectName": "MEDIGET_API",
-        "projectPath": "D:\\UCE Desktop 3\\Enero - Abril 2023 (11 Semestre)\\Anteproyecto de Grado\\Trabajo ordenado\\Tesis\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj",
-        "packagesPath": "C:\\Users\\ingju\\.nuget\\packages\\",
-        "outputPath": "D:\\UCE Desktop 3\\Enero - Abril 2023 (11 Semestre)\\Anteproyecto de Grado\\Trabajo ordenado\\Tesis\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\obj\\",
+        "projectPath": "D:\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\MEDIGET_API.csproj",
+        "packagesPath": "C:\\Users\\Acer Nitro 5\\.nuget\\packages\\",
+        "outputPath": "D:\\MEDIGET_SYSTEM\\Ramas\\BackEnd\\MIDIGEY_SYSTEM\\MEDIGET_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ingju\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Acer Nitro 5\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -94,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

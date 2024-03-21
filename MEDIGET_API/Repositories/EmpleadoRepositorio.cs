@@ -18,10 +18,21 @@ namespace MEDIGET_API.Repositories
             _configuration = configuration;
             _conexionDB = new ConexionDB();
         }
+
+        //
         IEnumerable<EmpleadoDTOVAA> IEmpleadoRepositorio.GetEmpleado()
         {
             string query = "dbo.ObtenerListaEmpleados";
             var resultSet = _conexionDB.GetConnection(_configuration).Query<EmpleadoDTOVAA>(query, commandType: CommandType.StoredProcedure);
+            return resultSet.ToList();
+        }
+
+        //
+
+        public IEnumerable<EmpleadoSelectOptionDTO> GetEmpleadosForSelectOption()
+        {
+            string query = "dbo.GetListaEmpleadosParaSelectOption";
+            var resultSet = _conexionDB.GetConnection(_configuration).Query<EmpleadoSelectOptionDTO>(query, commandType: CommandType.StoredProcedure);
             return resultSet.ToList();
         }
     }

@@ -9,7 +9,7 @@ namespace MEDIGET_API.Controllers
 {
     [Route("Empleados")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class EmpleadoController : ControllerBase
     {
         protected Respuesta _respuesta;
@@ -25,7 +25,7 @@ namespace MEDIGET_API.Controllers
 
 
         // .A.C.C.I.O.N -- Para obtener la lista basica de Emepleado: --------------------------------------------
-        //[Authorize]
+        [Authorize]
         [Route("obtenerEmpleados")]
         [HttpGet]
         public IActionResult getEmpleado()
@@ -44,7 +44,29 @@ namespace MEDIGET_API.Controllers
                 _respuesta.ErrorMessages = new List<string> { ex.ToString() };
                 return StatusCode(500, _respuesta);
             }
-   
+        }
+
+
+        // .A.C.C.I.O.N -- Para obtener la lista basica de Emepleado pero para ponerla en los select option en los form: --------------------------------------------
+        [Authorize]
+        [Route("ListaEmpleadosParaSelectOption")]
+        [HttpGet]
+        public IActionResult getEmpleadoFormSelectOption()
+        {
+            try
+            {
+                var listaEmpleado = _empleadoRepositorio.GetEmpleadosForSelectOption();
+                _respuesta.Result = listaEmpleado;
+                _respuesta.DisplayMessage = "Listado de empleado para SO obtenido con exito:";
+                return Ok(_respuesta);
+            }
+            catch (Exception ex)
+            {
+                _respuesta.IsSuccess = false;
+                _respuesta.DisplayMessage = "Error al solicitar la lista de Empleados para SO";
+                _respuesta.ErrorMessages = new List<string> { ex.ToString() };
+                return StatusCode(500, _respuesta);
+            }
         }
 
     }

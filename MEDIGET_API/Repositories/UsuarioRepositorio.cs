@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Transactions;
 using System;
 using System.Data;
+using System.Collections.Generic;
 
 namespace MEDIGET_API.Repositories
 {
@@ -30,21 +31,11 @@ namespace MEDIGET_API.Repositories
             return resultSet.ToList();
         }
 
-        // REPOSITORIO--A-P-I----P-R-O-Y-E-N-E-T-T ------ (Metodo para DEVOLVER una LISTA de Usuario):
-        public IEnumerable<EmpleadoDTO2> GetEmpleadoParaUsuario()
-        {
-            string query = "Execute dbo.ListadoEmpleadoFiltradaUsuario";
-            var resultSet = _conexionDB.GetConnection(_configuration).Query<EmpleadoDTO2>(query);
-            return resultSet.ToList();
-        }
-
-
         // REPOSITORIO--A-P-I----P-R-O-Y-E-N-E-T-T ------ (Metodo para INSERTAR USUARIO):
         public string  InsertarUsuario(Usuario usuario)
         {
             var connection = _conexionDB.GetConnection(_configuration);
             connection.Open();
- 
 
             try
             {
@@ -54,15 +45,28 @@ namespace MEDIGET_API.Repositories
                 var data = new
                 {
               
-                    NombreUsuario = usuario.NombreUsuario,
-                    IdRol = usuario.IdRol,
-                    Correo = usuario.Correo,
-                    Contraseña = Segurity.Segurity.HashPassword(usuario.Contraseña).ToString(),
-                    IdEmpleado = usuario.IdEmpleado,
-                    IdCreadoPor = usuario.IdCreadoPor,
+                    usuario.NombreUsuario,
+                    usuario.Correo,
+                    usuario.Contraseña,
+                    usuario.IdEmpleado,
+                    usuario.IdCreadoPor,
 
                 };
-             return  connection.ExecuteScalar<string>(usuarioInsert, data, commandType: CommandType.StoredProcedure);
+                var userIdInsertado = connection.ExecuteScalar<string>(usuarioInsert, data, commandType: CommandType.StoredProcedure);
+
+                // Recorrer el arreglo de Roles que se seleccionaron el form al crear el usuario:
+                foreach (var idRol in usuario.RolesIds)
+                {
+                    string procInsertUsuarioRol = "InsertarUsuariosRoles";
+                    connection.Execute(procInsertUsuarioRol, 
+                        new { 
+                            IdUsuario = userIdInsertado,
+                            IdRol = idRol,
+                            usuario.IdCreadoPor
+                        }, commandType: CommandType.StoredProcedure);
+                }
+                
+                return userIdInsertado;
             }
             catch (Exception ex)
             {
@@ -89,11 +93,10 @@ namespace MEDIGET_API.Repositories
                 {
                     IdUsuario = usuario.IdUsuario,
                     NombreUsuario = usuario.NombreUsuario,
-                    IdRol = usuario.IdRol,
                     Correo = usuario.Correo,
                     Contraseña = Segurity.Segurity.HashPassword(usuario.Contraseña).ToString(),
                     IdEmpleado = usuario.IdEmpleado,
-                    IdModificadoPor = usuario.IdModificadoPor,
+                    IdCreadoPor = usuario.IdCreadoPor,
 
                 };
                 connection.Execute(usuarioActualizar, data, commandType: CommandType.StoredProcedure);
@@ -142,15 +145,26 @@ namespace MEDIGET_API.Repositories
             return infoPerfil;
         }
 
-
+       
         public UsuarioDTO GetUsuarioLogin(string NombreUsuario, string Contraseña)
         {
+            // Obtengo el usuario:
             UsuarioDTO usuario = _conexionDB.GetConnection(_configuration).QueryFirstOrDefault<UsuarioDTO>("dbo.GetUsuarioLogin",
                 new { NombreUsuario, Contraseña },
                 commandType: CommandType.StoredProcedure);
 
+            
+            if (usuario != null)
+            {
+                // Obtengo los roles del usuario: GetRolesByUsuarioId
+                var roles = _conexionDB.GetConnection(_configuration).Query<Rol>("dbo.GetRolesByUsuarioId", new { usuario.IdUsuario }, commandType: CommandType.StoredProcedure).ToList();
+                usuario.Roles = roles;
+            }
+
             return usuario;
         }
+
+
 
 
         //
@@ -206,11 +220,6 @@ namespace MEDIGET_API.Repositories
                 throw ex;
             }
             connection.Close();
-        }
-
-        IEnumerable<EmpleadoDTO> IUsuarioRepositorio.GetEmpleadoParaUsuario()
-        {
-            throw new NotImplementedException();
         }
     }
 }
